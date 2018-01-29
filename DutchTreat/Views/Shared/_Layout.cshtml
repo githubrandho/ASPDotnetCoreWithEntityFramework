@@ -1,0 +1,74 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <environment names="Development">
+        <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+        <link href="~/lib/font-awsome/css/font-awesome.css" rel="stylesheet" />
+    </environment>
+    <environment names="Staging,Production">
+        <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="~/lib/font-awsome/css/font-awesome.min.css" rel="stylesheet" />
+    </environment>
+   
+    @*<link href="~/css/site.css" rel="stylesheet" />*@
+    <title>@ViewBag.Title</title> 
+</head>
+<body>
+    <div class="navbar navbar-inverse">
+        <header class="container">
+            <div class="navbar-header">
+                <div class="navbar-brand"><i class="fa fa-paint-brush fa-spin"></i>Dutch Treat</div>
+                <button class="navbar-toggle" data-toggle="collapse" data-target="#menu">&#9776;</button>
+            </div>
+            <div id="menu" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a asp-controller="App" asp-action="Index">Home</a></li>
+                    <li><a asp-controller="App" asp-action="Contact">Contact</a></li>
+                    <li><a asp-controller="App" asp-action="Shop">Shop</a></li>
+                    <li><a asp-controller="App" asp-action="About">About</a></li>
+                    @if (User.Identity.IsAuthenticated)
+    {
+                <li><a asp-controller="Account" asp-action="Logout">Logout</a></li>
+
+}
+else
+{
+
+                <li><a asp-controller="Account" asp-action="Login">Login</a></li>
+}
+
+                </ul>
+
+            </div>
+        </header>
+    </div>  
+    <section class="container">
+        <h2 class=" text-center">@ViewBag.Title</h2>
+        @RenderBody()
+    </section>
+    <footer class="container">
+        <div class="text-center">Copyright 2017 Dutch Treat LLC</div>
+    </footer>
+
+    <environment names="Development">
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="js/Index.js"></script>
+    </environment>
+    <environment names="Staging,Production">
+        <script src="//ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.JQuery"></script>
+        <script src="//ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                asp-fallback-test="window.JQuery&&window.JQuery.fn&&window.Jquery.fn.modal "></script>
+        <script src="~/dist/dutchtreat.min.js" asp-append-version="true"></script>
+    </environment>
+    @RenderSection("scripts", false)
+</body>
+</html>

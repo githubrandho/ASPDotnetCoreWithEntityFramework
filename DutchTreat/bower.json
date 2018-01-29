@@ -1,0 +1,11 @@
+{
+  "name": "asp.net",
+  "private": true,
+  "dependencies": {
+    "Jquery": "jQuery#3.2.1",
+    "jquery-validation": "1.17.0",
+    "jquery-validation-unobtrusive": "v3.2.6",
+    "bootstrap": "v3.3.7",
+    "font-awesome": "Font-Awesome#v4.7.0"
+  }
+}
